@@ -9,6 +9,7 @@ COPY tmp/vault       /usr/bin/vault
 COPY config.hcl      /etc/vault/config.hcl
 COPY start.sh        /usr/bin/start-vault
 COPY apk-install.sh  /usr/bin/apk-install
+COPY aws             /aws
 
 RUN chmod 755 /usr/bin/start-vault && \
     chmod 755 /usr/bin/apk-install
