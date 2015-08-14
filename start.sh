@@ -20,6 +20,11 @@ vault auth $ROOT_TOKEN
 
 vault mount aws
 vault write aws/config/root access_key=$AWS_ACCESS_KEY secret_key=$AWS_SECRET_KEY region=$AWS_REGION
+
+for policy in /aws/*; do
+  POLICY_NAME=$(basename $policy .json)
+  vault write aws/roles/$POLICY_NAME name=$POLICY_NAME policy=@$policy
+done
  
 wait $VAULT_PID
 
